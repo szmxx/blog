@@ -1,0 +1,27 @@
+:root.dark {
+  --fill-primary: 22, 26, 36;
+  --fill-default: 30, 34, 45;
+  --fill-dark: 30, 34, 45;
+  --fill-darker: 15, 23, 42;
+  --fill-hover: 22, 26, 36;
+  --text-primary: 235, 235, 235;
+  --text-auxiliary: 180, 180, 180;
+  --text-hint: 120, 120, 120;
+  --text-light: 0, 0, 0;
+  --border-primary: 45, 45, 45;
+  --border-dark: 60, 60, 60;
+  --color-shadow: rgb(255 255 255 / 20%);
+}
+
+:root.dark .md-editor {
+  --md-color: rgb(235, 235, 235);
+  --md-hover-color: rgb(120, 120, 120);
+  --md-bk-color: rgb(30, 34, 45);
+  --md-bk-hover-color: rgb(22, 26, 36);
+  --md-bk-color-outstand: rgb(22, 26, 36);
+  --md-border-color: rgb(45, 45, 45);
+  --md-scrollbar-bg-color: rgb(22, 26, 36);
+  .ͼ15 {
+    color: rgb(235, 235, 235);
+  }
+}

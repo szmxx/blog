@@ -1,0 +1,33 @@
+article p > code {
+  @apply bg-danger/10 text-danger/80 px-1 rounded;
+}
+
+article a {
+  @apply text-primary underline underline-dashed;
+}
+
+article pre code {
+  padding: 0.5rem 0 !important;
+}
+
+article .ec-line {
+  padding: 0 1rem !important;
+}
+
+article table td,
+article table th {
+  @apply border text-center;
+}
+article table th {
+  @apply bg-color;
+}
+
+.expressive-code .frame.is-terminal .header::before {
+  opacity: 1 !important;
+  background: linear-gradient(
+    to right,
+    rgb(var(--color-danger)),
+    rgb(var(--color-primary)) 50%,
+    green 100%
+  );
+}

@@ -1,0 +1,47 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "@/layouts/BlogPost.astro";
+import { formatTime } from "@/utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const len = posts.length;
+  return posts.map((post, index) => ({
+    params: { slug: post.slug },
+    props: {
+      post: post,
+      next: index + 1 === len ? { frontmatter: "" } : posts[index + 1],
+      prev: index === 0 ? { frontmatter: "" } : posts[index - 1],
+    },
+  }));
+}
+interface Props {
+  post: CollectionEntry<"blog">;
+  next: CollectionEntry<"blog">;
+  prev: CollectionEntry<"blog">;
+}
+
+const { post, prev, next } = Astro.props;
+const { Content, remarkPluginFrontmatter, headings } = await post.render();
+const lastModified = formatTime(
+  remarkPluginFrontmatter.lastModified || post.data.pubDate,
+  "YYYY-MM-DD HH:mm:ss"
+);
+
+const pubDate = formatTime(post.data.pubDate);
+const keywords = post?.data?.keywords?.split?.(",")?.filter((i) => i) || [];
+---
+
+<BlogPost
+  {...Object.assign({}, post.data, remarkPluginFrontmatter, {
+    modifiedtime: lastModified,
+    headings: headings,
+    prev: prev,
+    next: next,
+    pubDate: pubDate,
+    keywords: keywords,
+  })}
+>
+  <Content />
+</BlogPost>

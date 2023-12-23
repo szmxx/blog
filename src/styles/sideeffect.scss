@@ -1,0 +1,46 @@
+h1 {
+  @apply text-xl line-height-2em font-bold;
+}
+
+h2 {
+  @apply text-lg line-height-2em font-bold;
+}
+
+h3 {
+  @apply text-medium line-height-2em font-bold;
+}
+
+h4 {
+  @apply text-base line-height-1.5em font-bold;
+}
+
+h5 {
+  @apply text-sm font-bold;
+}
+
+h6 {
+  @apply text-xs font-bold;
+}
+
+ul,
+ol {
+  list-style: inside;
+}
+
+blockquote {
+  @apply border-l-4 border-primary p-4 bg-color;
+}
+
+kbd {
+  @apply bg-color px-1 rounded;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}

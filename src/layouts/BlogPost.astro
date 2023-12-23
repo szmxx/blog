@@ -1,0 +1,120 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import TableOfBlog from "@/components/TableOfBlog.astro";
+import AutoUp from "@/components/AutoUp.vue";
+import { ColorList } from "@/config";
+type Props = CollectionEntry<"blog">["data"];
+
+const {
+  title,
+  description,
+  pubDate,
+  heroImage,
+  catalog,
+  minutesRead,
+  modifiedtime,
+  headings,
+  prev,
+  next,
+} = Astro.props;
+
+const keywords = Astro.props.keywords as unknown as string[]
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+    <main data-pagefind-body class="center">
+      <article class="flex flex-col gap-4 w-1/2 <lg:w-full">
+        <h1 class="text-center ellipsis" title={title}>{title}</h1>
+        <div class="center rounded">
+          {
+            heroImage && (
+              <img src={heroImage} class="w-3/4 object-cover <sm:w-full rounded-4" alt="" />
+            )
+          }
+        </div>
+        <div class="flex items-center justify-between <sm:flex-col gap-4">
+          { catalog && (<div class='flex items-center gap-x-2'>
+           <a
+              href={`/catalogs/${catalog}`}
+              class="flex items-center gap-x-1 text-color decoration-none bg-color cursor-pointer px-2 py-1 rounded"
+            >
+              <div class="i-ion-bookmark-sharp text-primary!"></div>
+              <div>{catalog}</div>
+            </a>
+          </div>)
+          }
+          <div class="gap-4 flex">
+            <div class="flex items-center gap-x-2">
+              <div class="i-ion-hourglass-outline"></div>
+              <span>{minutesRead}</span>
+            </div>
+            <div class="flex items-center gap-x-2">
+              <div class="i-ion-calendar"></div>
+              <span>{pubDate}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-color p-2 rounded select-none">
+          <span class="font-bold">最近更新于：</span>
+          <span>{modifiedtime}</span>
+        </div>
+
+        <slot />
+
+        <div class='flex gap-2 items-center'>
+          {keywords?.map?.(
+            (keyword, index) => <a href={`/tags/${keyword}`} class='px-2 text-color py-1 cursor-pointer decoration-none rounded min-w-10 text-center' style=`background-color:${ColorList[index]}`>{keyword}</a>
+          )}
+        </div>
+        <div
+          class="flex items-center justify-between gap-x-4 mt-16 overflow-hidden"
+        >
+          {
+            (
+              <a
+                href={prev?.slug ? `/blog/${prev?.slug}/` : "/blog"}
+                class="flex w-[calc(50%-1rem)] select-none items-center text-color gap-x-2 cursor-pointer"
+              >
+                <span class="i-ion-ios-arrow-left overflow-hidden" />
+                {prev?.slug ? (
+                  <div class="ellipsis">{prev?.data?.title}</div>
+                ) : (
+                  <span>cd ...</span>
+                )}
+              </a>
+            )
+          }
+          {
+            (
+              <a
+                href={next?.slug ? `/blog/${next?.slug}/` : "/blog"}
+                class="flex items-center text-color w-[calc(50%-1rem)] select-none justify-end gap-x-2 cursor-pointer"
+              >
+                {next?.slug ? (
+                  <div class="ellipsis">{next?.data?.title}</div>
+                ) : (
+                  <span>cd ...</span>
+                )}
+
+                <span class="i-ion-ios-arrow-right overflow-hidden" />
+              </a>
+            )
+          }
+        </div>
+      </article>
+    </main>
+    {headings?.length ? <TableOfBlog headings={headings} /> : ""}
+    <AutoUp client:only="vue" />
+    <Footer />
+  </body>
+</html>
+

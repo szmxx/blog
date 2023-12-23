@@ -1,0 +1,98 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import {formatTime} from "@/utils"
+import {ColorList} from "@/config"
+
+const year = new Date().getFullYear();
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags: string[] = [];
+  posts.map((post) => {
+    if (post?.data?.keywords) {
+      const keywords =
+        post?.data?.keywords?.split?.(",")?.filter((i) => i) || [];
+      tags.push(...keywords);
+    }
+  });
+  const uniqueTags = Array.from(new Set(tags));
+  return uniqueTags.map((tag) => ({
+    params: { tag: tag },
+    props: {
+      posts: posts.filter((post) => {
+        const keywords =
+          post?.data?.keywords?.split?.(",")?.filter((i) => i) || [];
+        return keywords.includes(tag);
+      }),
+    },
+  }));
+}
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+const SITE_TITLE = tag + "标签";
+const SITE_DESCRIPTION = tag + "的标签详情";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center" data-pagefind-body>
+      <section class="w-1/2 <lg:w-full flex flex-col min-h-75vh gap-4">
+        <div class="flex justify-between items-center">
+          <h1>{tag}</h1>
+          <a href="/tags/" class="i-ion-arrow-left-c cursor-pointer text-xl"></a>
+        </div>
+        <ul style="list-style: none" class="flex gap-4 flex-col">
+          {
+            posts.map((post) => (
+              <li class="bg-color rounded">
+                <a
+                  href={`/blog/${post.slug}/`}
+                  class="flex h-20 justify-between flex-nowrap"
+                >
+                  <div class="flex flex-col justify-between p-2 w-full">
+                    <h4>{ post.data.title }</h4>
+                    <div class="flex gap-4">
+                      <p class="text-hint">{ formatTime(post?.data?.pubDate) }</p>
+                      <div class="flex gap-2">
+                        {post?.data?.keywords?.split(',').map((item, index)=> (
+                          item && <div class="px-2 rounded min-w-10 text-center" style=`background-color: ${ColorList[index]}`>
+                          { item }
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <img
+                    v-show="post.data.heroImage"
+                    class="max-w-30% object-cover p-2 rounded-3 min-w-20%"
+                    src={post.data.heroImage}
+                    alt="加载失败"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <div
+      class="text-stroke-1 select-none pointer-events-none text-stroke-gray/10 text-transparent text-60 <sm:text-30 font-bold absolute right-8 top-1/2"
+    >
+      {year}
+    </div>
+    <Footer />
+  </body>
+</html>

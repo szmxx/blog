@@ -1,0 +1,43 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Skill from "@/components/Skill.vue";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center">
+      <section class="w-1/2 <lg:w-full">
+        <div
+          class="border-l-4 pl-2 rounded border-primary bg-color p-2 flex gap-2 flex-col"
+        >
+          <p>
+            Hey，我是{SITE_TITLE}，一名前端工程师，专注于工程化和可视化领域。
+          </p>
+          <p>
+            自2019年本科毕业，在至今这段旅程中，我探索了许多有趣的技术领域，借助技术的力量，我构建了一些想法和项目，你可以在这里查看我的
+
+
+            <a href="/product" class="text-primary underline">完整的项目清单</a>
+          </p>
+        </div>
+
+        <Skill />
+      </section>
+    </main>
+    <div
+      class="text-stroke-1 select-none pointer-events-none text-stroke-gray/10 text-transparent text-60 <sm:text-30 font-bold absolute right-8 top-1/2"
+    >
+      {year}
+    </div>
+    <Footer />
+  </body>
+</html>

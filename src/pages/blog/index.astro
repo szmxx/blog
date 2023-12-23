@@ -1,0 +1,24 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import BlogList from "@/components/BlogList.vue";
+const SITE_TITLE = "文章列表";
+const SITE_DESCRIPTION = "所有的文章列表";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center">
+      <section class="w-1/2 <lg:w-full min-h-75vh flex flex-col">
+        <BlogList client:only="vue" />
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

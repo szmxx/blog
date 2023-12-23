@@ -1,0 +1,36 @@
+---
+import DarkToggle from "./DarkToggle.astro";
+import Search from "./Search.vue";
+---
+
+<header class="center">
+  <nav class="flex items-center justify-between px-4 w-1/2 <lg:w-full">
+    <h2 class="font-logo text-32px">
+      <a href="/">accnight</a>
+    </h2>
+    <div class="flex items-center gap-x-4 <sm:gap-x-2">
+      <div class="gap-x-4 flex items-center <sm:gap-x-2">
+        <Search client:only="vue" />
+        <a href="/blog">文章</a>
+        <a href="/product">项目</a>
+        <a href="/tags">标签</a>
+        <a href="/publish">发布</a>
+      </div>
+      <div class="flex items-center gap-x-4 <sm:gap-x-2">
+        <DarkToggle />
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const pathname = location?.pathname;
+  const link = document.querySelector(`a[href="${pathname}"]`);
+  link?.classList?.add?.("text-primary");
+</script>
+
+<style>
+  .font-logo {
+    font-family: "Whisper";
+  }
+</style>

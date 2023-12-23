@@ -1,0 +1,30 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Editor from "@/components/Editor.vue";
+const SITE_TITLE = "发布页面";
+const SITE_DESCRIPTION = "发布页面";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center">
+      <section class="h-75vh overflow-hidden">
+        <Editor client:only="vue" />
+      </section>
+    </main>
+    <div
+      class="text-stroke-1 select-none pointer-events-none text-stroke-gray/10 text-transparent text-60 <sm:text-30 font-bold absolute right-8 top-1/2"
+    >
+      {year}
+    </div>
+    <Footer />
+  </body>
+</html>

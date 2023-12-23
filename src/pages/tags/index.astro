@@ -1,0 +1,30 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+const SITE_TITLE = "标签列表";
+const SITE_DESCRIPTION = "所有的标签列表";
+import TagList from "@/components/TagList.vue";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center">
+      <section class="w-1/2 <lg:w-full min-h-75vh">
+        <TagList client:only="vue" />
+      </section>
+    </main>
+    <div
+      class="text-stroke-1 select-none pointer-events-none text-stroke-gray/10 text-transparent text-60 <sm:text-30 font-bold absolute right-8 top-1/2"
+    >
+      {year}
+    </div>
+    <Footer />
+  </body>
+</html>

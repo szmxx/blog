@@ -1,0 +1,36 @@
+---
+import { SITE_TITLE } from "@/consts";
+const year = new Date().getFullYear();
+---
+
+<footer class="py-4 text-hint w-full center gap-x-1">
+  <a class="underline" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+    >CC BY-NC-SA 4.0
+  </a>
+  <span>{year}-PRESENT</span>
+  <span>&copy; {SITE_TITLE}</span>
+  <div class="ml-4 flex items-center gap-2">
+    <a href="/rss.xml" target="_blank" class="i-ion-logo-rss"></a>
+    <a href="https://github.com/szmxx" target="_blank" class="i-ion-logo-github"
+    ></a>
+  </div>
+</footer>
+
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", theme);
+</script>

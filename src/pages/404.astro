@@ -1,0 +1,30 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+const SITE_TITLE = "404";
+const SITE_DESCRIPTION = "404页面";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center">
+      <section class="min-h-75vh flex flex-col center gap-4">
+        <div class="text-24 line-height-1.2em">404</div>
+        <div>
+          页面似乎已经丢失，是否返回<a
+            href="/"
+            class="text-primary cursor-pointer underline">首页</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>

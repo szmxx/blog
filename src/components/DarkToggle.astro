@@ -1,0 +1,59 @@
+---
+const theme = "light";
+---
+
+<div data-theme={theme} id="darktoggle" class="cursor-pointer center">
+  <div class="i-ion-sunny"></div>
+</div>
+
+<script>
+  const theme = localStorage.getItem("theme");
+  document.addEventListener("DOMContentLoaded", () => {
+    refreshtheme(theme as string);
+  });
+  const darktoggle = document.querySelector("#darktoggle");
+  darktoggle?.addEventListener("click", (evt) => {
+    const el = evt.currentTarget as HTMLElement;
+    const { theme } = el.dataset;
+    const x = evt?.clientX;
+    const y = evt?.clientY;
+    const maxX = Math.max(x, innerWidth - x);
+    const maxY = Math.max(y, innerWidth - y);
+    const radius = Math.hypot(maxX, maxY);
+    if (document?.startViewTransition) {
+      const transition = document?.startViewTransition?.(() => {
+        refreshtheme(theme === "dark" ? "light" : "dark");
+      });
+      transition?.ready?.then?.(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0 at ${x}px ${y}px)`,
+              `circle(${radius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 500,
+            easing: "ease-in",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+      });
+    } else {
+      refreshtheme(theme === "dark" ? "light" : "dark");
+    }
+  });
+
+  function refreshtheme(theme: string) {
+    const icon = darktoggle?.firstElementChild;
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      if (icon) icon.className = "i-ion-moon";
+    } else {
+      if (icon) icon.className = "i-ion-sunny";
+      document.documentElement.classList.remove("dark");
+    }
+    darktoggle?.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }
+</script>

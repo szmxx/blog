@@ -1,0 +1,82 @@
+---
+import type { MarkdownHeading } from "astro";
+const { headings } = Astro.props;
+const toc = buildToc(headings);
+import TableHeading from "./TableHeading.astro";
+function buildToc(headings: MarkdownHeading[]) {
+  const toc: Record<string, unknown>[] = [];
+  const parentHeadings = new Map();
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading?.depth, heading);
+    if (heading.depth === 2) {
+      toc.push(heading);
+    } else {
+      parentHeadings?.get(heading.depth - 1)?.subheadings?.push?.(heading);
+    }
+  });
+  return toc;
+}
+---
+
+<nav class="fixed right-0 top-80px w-70 flex justify-end">
+  <div
+    id="menucollpse"
+    class="bg-color mt-2 h-fit w-fit p-1 cursor-pointer rounded"
+  >
+    <div class="i-ion-arrow-right-b <lg:i-ion-arrow-left-b"></div>
+  </div>
+
+  <ul
+    style="list-style: none;"
+    id="menucatalog"
+    class="bg-color px-4 py-2 min-w-60 rounded overflow-y-auto max-h-[calc(100vh-160px)] overflow-x-hidden <lg:hidden"
+  >
+    {toc.map((heading) => <TableHeading heading={heading} />)}
+  </ul>
+</nav>
+
+<script is:inline>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const headingFragment = `#${entry.target.id}`;
+        const tocItem = document.querySelector(`a[href="${headingFragment}"]`);
+        if (entry.isIntersecting) {
+          const previouslyActivatedItem =
+            document.querySelector(".text-primary");
+
+          previouslyActivatedItem?.classList.remove("text-primary");
+          tocItem.classList.add("text-primary");
+        } else {
+          const isAnyOtherEntryIntersecting = entries.some(
+            (e) => e.target.id !== entry.target.id && e.isIntersecting
+          );
+
+          if (isAnyOtherEntryIntersecting) {
+            tocItem.classList.remove("text-primary");
+          }
+        }
+      }
+    },
+    { root: null, rootMargin: "0px", threshold: [1] }
+  );
+
+  const sectionHeadings = document.querySelectorAll("article h2, article h3");
+  for (const heading of sectionHeadings) {
+    observer.observe(heading);
+  }
+
+  const menucollpse = document.querySelector("#menucollpse");
+  const menucatalog = document.querySelector("#menucatalog");
+  menucollpse.addEventListener("click", () => {
+    const display = getComputedStyle(menucatalog).display;
+    if (display !== "none") {
+      menucollpse.firstElementChild.className = "i-ion-arrow-left-b";
+      menucatalog.style.display = "none";
+    } else {
+      menucollpse.firstElementChild.className = "i-ion-arrow-right-b";
+      menucatalog.style.display = "block";
+    }
+  });
+</script>

@@ -1,0 +1,20 @@
+---
+const { heading } = Astro.props;
+---
+
+{
+  heading.slug && (
+    <li>
+      <a href={"#" + heading.slug} class="ellipsis inline-block w-full">
+        {heading.text}
+      </a>
+      {heading.subheadings.length > 0 && (
+        <ul style="list-style: none;" class="ml-4">
+          {heading.subheadings.map((subheading: unknown) => (
+            <Astro.self heading={subheading} />
+          ))}
+        </ul>
+      )}
+    </li>
+  )
+}
