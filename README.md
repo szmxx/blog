@@ -1,5 +1,5 @@
-## Blog
-个人博客：由 astro 和 vue 构建
+## 个人博客
+由 `Astro 3` 和 `Vue 3` 构建
 
 ### 功能特性
 - 主题切换
@@ -21,5 +21,5 @@
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/astro&template=astro)
 
-_Live Example: https://astro-template.vercel.app_
+_真实示例: https://www.aitimi.cn/_
 

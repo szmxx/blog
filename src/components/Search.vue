@@ -72,7 +72,7 @@ async function onInput(evt: Event) {
   if (el.dataset.loaded !== "true") {
     el.dataset.loaded = "true";
     // @ts-ignore
-    // window.pagefind = await import("/pagefind/pagefind.js");
+    window.pagefind = await import("/pagefind/pagefind.js");
   }
   resultList.value = [];
   // @ts-ignore
