@@ -1,0 +1,45 @@
+---
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Editor from "@/components/Editor.vue";
+const SITE_TITLE = "友链页面";
+const SITE_DESCRIPTION = "友链页面";
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="center">
+      <section
+        class="h-75vh w-1/2 <lg:w-full overflow-hidden flex flex-col gap-4"
+      >
+        <div>
+          本站已建立，欢迎各位 uu 们共建友链，如需申请，请到 <a
+            href="https://github.com/szmxx/blog/issues/1"
+            target="_blank"
+            class="text-primary underline">这里</a
+          > 留言～
+        </div>
+        <div class="px-4 pt-2 pb-4 bg-color rounded">
+          <h3>本站信息</h3>
+          <div>名称：伴夜</div>
+          <div>描述：伴夜的个人博客</div>
+          <div>地址：https://www.aitimi.cn</div>
+          <div>头像：https://www.aitimi.cn/logo.png</div>
+        </div>
+      </section>
+    </main>
+    <div
+      class="text-stroke-1 select-none pointer-events-none text-stroke-gray/10 text-transparent text-60 <sm:text-30 font-bold absolute right-8 top-1/2"
+    >
+      {year}
+    </div>
+    <Footer />
+  </body>
+</html>
