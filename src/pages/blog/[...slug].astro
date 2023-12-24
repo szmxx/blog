@@ -5,7 +5,9 @@ import { formatTime } from "@/utils";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  posts.sort((a, b) => {
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  });
   const len = posts.length;
   return posts.map((post, index) => ({
     params: { slug: post.slug },

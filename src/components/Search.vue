@@ -22,7 +22,9 @@
           清除
         </button>
       </div>
-      <div v-if="loading" class="text-hint text-sm">结果搜索中...</div>
+      <div v-if="loading && resultList?.length === 0" class="text-hint text-sm">
+        结果搜索中...
+      </div>
       <div
         v-if="resultList.length"
         class="flex flex-col gap-4 max-h-75vh overflow-y-auto"
