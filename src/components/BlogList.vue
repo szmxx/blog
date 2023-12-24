@@ -6,7 +6,7 @@
         class="flex h-20 justify-between flex-nowrap"
       >
         <div class="flex flex-col justify-between p-2 w-full">
-          <h4>{{ post.data.title }}</h4>
+          <h4 class="ellipsis">{{ post.data.title }}</h4>
           <div class="flex gap-4">
             <p class="text-hint">{{ formatTime(post?.data?.pubDate) }}</p>
             <div class="flex gap-2">

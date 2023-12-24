@@ -27,7 +27,7 @@
       </div>
       <div
         v-if="resultList.length"
-        class="flex flex-col gap-4 max-h-75vh overflow-y-auto"
+        class="flex flex-col gap-4 max-h-75vh <sm:max-h-70vh overflow-y-auto"
       >
         <div class="text-hint text-sm">
           共有 {{ resultList.length }} 条搜索结果

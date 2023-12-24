@@ -3,7 +3,7 @@ title: 跟着 ElementPlus 学主题定制
 description: ElementPlus 主题定制
 pubDate: 'Jul 15 2022'
 heroImage: '/blog-placeholder-2.jpg'
-keywords: ElementPlus, 源码
+keywords: ElementPlus,源码
 catalog: 前端
 ---
 

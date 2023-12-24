@@ -3,7 +3,7 @@ title: '入门 ChatGPT 知识库开发'
 description: ''
 pubDate: 'Jul 08 2022'
 heroImage: 'https://raw.githubusercontent.com/szmxx/blog-imgs/main/%E4%B8%8B%E8%BD%BD.png'
-keywords: '知识库'
+keywords: 'OpenAI,知识库'
 catalog: 前端
 ---
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ac748f31b02e414aaa60cc1689fd1f4d~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1426&h=734&s=62089&e=png&b=fdfdfd)

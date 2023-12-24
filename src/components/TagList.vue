@@ -19,6 +19,9 @@
           :key="catalog"
         >
           {{ catalog }}
+          <span class="text-primary"
+            >[{{ catalogmap?.[catalog]?.length }}]</span
+          >
         </a>
       </div>
       <div v-else class="center p-4 text-hint flex flex-col gap-2">
@@ -34,6 +37,7 @@
           :key="tag"
         >
           {{ tag }}
+          <span class="text-primary">[{{ tagmap?.[tag]?.length }}]</span>
         </a>
       </div>
       <div v-else class="center p-4 text-hint flex flex-col gap-2">
@@ -50,19 +54,27 @@ import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
 
-let tags: string[] = [];
-let catalogs: string[] = [];
-posts.map((post) => {
-  if (post?.data?.keywords) {
-    const keywords = post?.data?.keywords?.split?.(",")?.filter((i) => i) || [];
-    tags.push(...keywords);
+const tagmap: Record<string, string[]> = {};
+const catalogmap: Record<string, string[]> = {};
+
+posts.forEach((post) => {
+  const { keywords, catalog } = post?.data || {};
+  if (keywords) {
+    const tags = keywords?.split?.(",")?.filter((i) => i) || [];
+    tags.forEach((tag) => {
+      const taglist = tagmap[tag?.trim()] || [];
+      taglist.push(post.slug);
+      tagmap[tag] = taglist;
+    });
   }
-  if (post?.data?.catalog) {
-    catalogs.push(post?.data?.catalog);
+  if (catalog) {
+    const cataloglist = catalogmap[catalog] || [];
+    cataloglist.push(post.slug);
+    catalogmap[catalog] = cataloglist;
   }
 });
-tags = Array.from(new Set(tags));
-catalogs = Array.from(new Set(catalogs));
+const tags = Object.keys(tagmap);
+const catalogs = Object.keys(catalogmap);
 
 const uniqueTags = ref(tags);
 const uniqueCatalogs = ref(catalogs);

@@ -3,7 +3,7 @@
   description: 使用TypeScript封装一个简单好用的Http工具
   pubDate: 2023-12-15
   heroImage: ""
-  keywords: HTTP, 代码封装
+  keywords: HTTP,代码封装
   catalog: 前端
 ---
 

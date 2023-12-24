@@ -47,7 +47,10 @@ const SITE_DESCRIPTION = catalog + "的分类详情";
     <main class="center" data-pagefind-body>
       <section class="w-1/2 <lg:w-full flex flex-col min-h-75vh gap-4">
         <div class="flex justify-between items-center">
-          <h1>{catalog}</h1>
+          <div class="flex gap-x-2 items-center">
+            <h1>{catalog}</h1>
+            <div class="bg-primary px-1 text-white rounded">分类</div>
+          </div>
           <a href="/tags/" class="i-ion-arrow-left-c cursor-pointer text-xl"></a>
         </div>
         <ul style="list-style: none" class="flex gap-4 flex-col">
