@@ -22,6 +22,7 @@
           清除
         </button>
       </div>
+      <div v-if="loading" class="text-hint text-sm">结果搜索中...</div>
       <div
         v-if="resultList.length"
         class="flex flex-col gap-4 max-h-75vh overflow-y-auto"
@@ -35,7 +36,19 @@
           v-for="item in resultList"
           :key="item.id"
         >
-          <h3>{{ item.title }}</h3>
+          <h3 class="flex gap-2">
+            {{ item.title }}
+            <div v-if="item.url?.startsWith('/catalogs')">
+              <span class="px-1 py-0.5 bg-primary text-sm text-white rounded">
+                分类
+              </span>
+            </div>
+            <div v-if="item.url?.startsWith('/tags')">
+              <span class="px-1 py-0.5 bg-primary text-sm text-white rounded">
+                标签
+              </span>
+            </div>
+          </h3>
           <p v-html="item.excerpt"></p>
         </a>
       </div>
@@ -67,6 +80,7 @@ function onClear() {
 }
 
 const resultList = ref<Record<string, string>[]>([]);
+const loading = ref(false);
 async function onInput(evt: Event) {
   const el = evt.target as HTMLInputElement;
   if (el.dataset.loaded !== "true") {
@@ -75,16 +89,22 @@ async function onInput(evt: Event) {
     window.pagefind = await import("/pagefind/pagefind.js");
   }
   resultList.value = [];
-  // @ts-ignore
-  const search = await window?.pagefind?.search?.(el?.value);
-  for (const result of search?.results || []) {
-    const data = await result.data();
-    resultList.value.push({
-      id: crypto.randomUUID(),
-      url: data.url,
-      title: data.meta.title,
-      excerpt: data.excerpt,
-    });
+  loading.value = true;
+  try {
+    // @ts-ignore
+    const search = await window?.pagefind?.search?.(el?.value);
+    for (const result of search?.results || []) {
+      const data = await result.data();
+      resultList.value.push({
+        id: crypto.randomUUID(),
+        url: data.url,
+        title: data.meta.title,
+        excerpt: data.excerpt,
+      });
+    }
+  } catch {
+  } finally {
+    loading.value = false;
   }
 }
 </script>

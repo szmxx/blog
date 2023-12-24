@@ -23,3 +23,6 @@
 
 _真实示例: https://www.aitimi.cn/_
 
+
+### 注意事项
+在开发环境中，需要注释 `src/components/Search.vue` 中的这行 `window.pagefind = await import("/pagefind/pagefind.js");` 代码
