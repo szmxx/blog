@@ -8,13 +8,6 @@ const year = new Date().getFullYear();
 
 const FriendList = [
   {
-    name: "在线ps",
-    desc: "在线实现图片编辑与在线p图",
-    link: "https://zaixianps.net",
-    logo: "https://zaixianps.net/images/favicon.png",
-    status: "nofollow",
-  },
-  {
     name: "ASCII-ART",
     desc: "ASCII-ART",
     link: "https://markyun.github.io/",
@@ -47,7 +40,14 @@ const FriendList = [
     desc: "编程随想",
     link: "https://blog.zshnb.com/",
     logo: "https://blog.zshnb.com/images/favicon-32x32.png",
-    status: "nofollow",
+    status: "",
+  },
+  {
+    name: "快乐码原",
+    desc: "写代码要用化劲",
+    link: "https://yesmore.cc/",
+    logo: "https://yesmore.cc/img/avatar/favicon.ico",
+    status: "",
   },
 ];
 ---
@@ -105,7 +105,7 @@ const FriendList = [
                     {friend.name}
                     <div
                       class:list={
-                        friend.status ? "i-ion-ios-link" : "i-ion-ios-link"
+                        friend.status ? "i-ion-warning" : "i-ion-ios-link"
                       }
                     />
                   </h3>
