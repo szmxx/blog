@@ -2,7 +2,7 @@
 title: 聊一聊代码提交规范化
 description: 代码提交规范化
 pubDate: "Jul 02 2022"
-heroImage: "/blog-placeholder-5.jpg"
+heroImage: ""
 keywords: '代码规范'
 catalog: 工程化
 ---

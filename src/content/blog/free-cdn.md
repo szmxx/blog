@@ -2,13 +2,13 @@
 title: 免费 CDN 加速你的个人网站
 description: 免费 CDN 加速你的个人网站
 pubDate: 'Jul 01 2022'
-heroImage: '/blog-placeholder-1.jpg'
+heroImage: ''
 keywords: 'CDN'
 catalog: 运维
 ---
 本文带你揭晓使用 `cloudflare` 加速你的个人网站
 
-### 添加个人站点
+## 添加个人站点
 打开 [cloudflare](https://www.cloudflare.com/) 网站，输入你的站点，这里不允许根域名，不能使用子域名
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/222d8d7577b243cdbc4d595ed1f2f7ed~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3014&h=1348&s=290118&e=png&b=fefefe)
@@ -42,7 +42,7 @@ catalog: 运维
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/25e004c0bd4140fd9fca89b0e1a60501~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2998&h=1334&s=254840&e=png&b=fefefe)
 
-### 阿里云设置
+## 阿里云设置
 打开你的阿里云，切换到域名服务，一般我们解析都在这里设置
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/77b26195244a47c9b844b313376b4937~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2996&h=1316&s=398004&e=png&b=fefefe)
@@ -53,7 +53,7 @@ catalog: 运维
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ee804db4a994a5d8ff5048e814841a2~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3020&h=1368&s=191728&e=png&b=fefefe)
 
-### 检查 & 后续优化
+## 检查 & 后续优化
 完成名称服务器更换后，你可以在 [whatsmydns](https://www.whatsmydns.net/#NS/) 查询你的域名状态，可以看到全部替换成 `cloudflare` 了
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a716b39359e54309adb0f5b4c913c6c0~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3018&h=1464&s=610149&e=png&b=fbfbfb)
@@ -71,7 +71,7 @@ catalog: 运维
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/197fc0b5d35540ed9c266e41cbb27570~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3018&h=1474&s=284368&e=png&b=fefefe)
 
-### 网速检测
+## 网速检测
 在站点之家测速发现，国内有些地区网速确实很慢，因为 `cloudflare` 服务器主要分布在 海外，再看海外的发现，大部分地址都还 OK 了
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/183939a73912488badd847f3b391af73~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1474&h=720&s=106017&e=png&b=fefefe)

@@ -2,7 +2,7 @@
 title: 'AI 风口已来，手摸手带你入门AI开发！'
 description: 'Lorem ipsum dolor sit amet'
 pubDate: 'Jul 22 2022'
-heroImage: '/blog-placeholder-4.jpg'
+heroImage: ''
 keywords: 'OpenAI'
 catalog: AI
 ---
